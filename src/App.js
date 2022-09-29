@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Marvel from './components/Marvel';
 
 
+
 function App() {
   return (
     <>
