@@ -76,13 +76,13 @@ function Navbar() {
             </div>
             </Link>
 
-            <Link to = '/' style={{textDecoration: 'none'}} className='navbar-login'>
+            <Link to = '/Login' style={{textDecoration: 'none'}} className='navbar-login'>
             <div className= 'login-mom'>
                 <h3>Login</h3>
             </div>
             </Link>
 
-            <Link to = '/' style={{textDecoration: 'none'}} className='navbar-register'>
+            <Link to = '/Register' style={{textDecoration: 'none'}} className='navbar-register'>
             <div className= 'register-mom'>
                 <h3>Register</h3>
             </div>

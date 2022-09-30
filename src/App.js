@@ -2,25 +2,31 @@ import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import { Switch } from '@material-ui/core';
-import Footer from './components/Footer';
-import Marvel from './components/Marvel';
+import Homepage from './components/Homepage';
+import Login from './components/registration/login';
+import Register from './components/registration/register';
 
 
 
-function App() {
-  return (
-    <>
-    <Router>
-      <Navbar />
+class App extends React.Component{
+  constructor(props){
+  super(props)
+}
+
+  render()
+  {
+    return (
+    <>      
       <Routes>
-        <Route path='/' exact />
+          <Route path="/" element={<Homepage {...this.props} />}/>
+          <Route path="/Login" element={<Login  {...this.props}/>} />
+          <Route path="/Register" element={<Register  {...this.props}/>} />
       </Routes>
-      <Marvel />
-      <Footer />
-    </Router>
+      
+
     </>
   );
+  }
 }
 
 export default App;
