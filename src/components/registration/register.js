@@ -2,23 +2,29 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import Card from '@mui/material/Card';
 import { Button } from '@mui/material';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
+import axios from 'axios';
+import Notification from 'rc-notification/es/Notifications';
+import {Link, Navigate} from 'react-router-dom';
 
 class Register extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            userid : "",
+            username : "",
             password : "",
             confirm_password : "",
-            userid_helpertext : false,
+            username_helpertext : false,
             password_helpertext : false,
             confirmPass_helpertext : false,
+            enable_registration : 0,
         }
     }
 
-    setUserId = (e) =>{
+    setusername = (e)  =>{
         let user_id = e.target.value;
-        let user_helpertext = this.state.userid_helpertext;
+        let user_helpertext = this.state.username_helpertext;
         if(e.target.value)
         {
             user_helpertext = false
@@ -27,8 +33,8 @@ class Register extends React.Component {
            user_helpertext = true
         }
         this.setState({
-            userid : user_id,
-            userid_helpertext : user_helpertext
+            username : user_id,
+            username_helpertext : user_helpertext
         })
     }
 
@@ -65,16 +71,43 @@ class Register extends React.Component {
         })
     }
 
-    handleSignUp = () => {
-        if(this.state.password != "" && this.state.userid != "" && this.state.confirm_password != "")
+    handleRegister = () => {
+        debugger;
+        if(this.state.password !== "" && this.state.username !== "" && this.state.confirm_password !== "")
         {
+           axios.post("http://localhost:7656/userApi/Register",{
+            username : this.state.username,
+            password : this.state.password
+           }).then(data => 
+            {
+                return (<Link to="/"/>);
+            //     if(data.data.length > 0){
 
+            //         localStorage.setItem("enable_registration" , 1);
+            //         localStorage.setItem("username", data.data[0].username);
+            //         return <Navigate to="/"/>;
+            //     }
+            
+            
+            // else{
+            //     localStorage.setItem("enable_registration", 0);
+                
+            //     Notification.newInstance({}, notification => {
+            //         notification.notice({
+            //           content: 'Invalid Credentials'
+            //         });
+            //       });
+
+            // }
+        }
+
+            )
         }
         else
         {
-            if(this.state.userid == "")
+            if(this.state.username == "")
             {
-                this.setState({userid_helpertext : true})
+                this.setState({username_helpertext : true})
             }
             if(this.state.password == "")
             {
@@ -91,17 +124,25 @@ class Register extends React.Component {
     {
         return(
             <>
-            <Card sx={{  justifyContent: 'center',  width: '40%', marginLeft:'30%', marginTop : '10%' }}>
+            <Navbar/>
+            <Footer />
+            <Card sx={{  justifyContent: 'center', 
+                         width: '30%',
+                         height: '22vw', 
+                         marginLeft:'35%', 
+                         marginTop : '6%',
+                         paddingTop: '40px',
+                         backgroundImage: 'conic-gradient(thistle, lavender)'  }}>
             <div style={{textAlign: 'center'}}>
             <div>
             <TextField
-            value = {this.state.userid}
+            value = {this.state.username}
           id="standard-error-helper-text"
-          label="User ID"
+          label="Username"
           variant="standard"
           sx={{width : '40%'}}
-          error = {this.state.userid_helpertext}
-          onChange={this.setUserId}
+          error = {this.state.username_helpertext}
+          onChange={this.setusername}
         />
         </div>
         <br/>
@@ -130,7 +171,7 @@ class Register extends React.Component {
             </div>
             <br/>
             <div>
-                <Button variant="contained" sx={{width : '40%'}} onClick={this.handleSignUp}>Sign Up</Button>
+                <Button variant="contained" sx={{width : '40%'}} onClick={this.handleRegister}>Register</Button>
             </div>
             <br/>
     </div>

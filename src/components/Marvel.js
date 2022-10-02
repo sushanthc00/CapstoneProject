@@ -11,11 +11,11 @@ function Marvel() {
   return (
     <div className='marvel-display'>
         <div className='picture-container'>
-            <img className='marvel-pic' src={Picture}></img>
             <img className='marvel-pic' src={Spidey}></img>
-            <img className='marvel-pic' src={IronMan}></img>
             <img className='marvel-pic' src={BlackPanther}></img>
+            <img className='marvel-pic' src={Picture}></img>      
             <img className='marvel-pic' src={Cap}></img>
+            <img className='marvel-pic' src={IronMan}></img>
             <img className='marvel-pic' src={Hulk}></img>
 
 

@@ -34,7 +34,7 @@ function Navbar() {
             </div>
             </Link>
 
-            <Link to = '/' style={{textDecoration: 'none'}} className='navbar-about'>
+            <Link to = '/AboutUs' style={{textDecoration: 'none'}} className='navbar-about'>
             <div className= 'about-mom'>
                 <h3>About Us</h3>
             </div>

@@ -10,6 +10,7 @@
     background: #5b295d;
     text-align: center;
     align-items: center;
+    font-family: 'Playfair Display', serif;
     
 }
 
@@ -84,9 +85,10 @@
     flex-direction: row;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.8);
     border-radius: 4px;
-    background: #7bc407;
+    background: rgb(42, 0, 55);
     text-align: center;
     align-items: center;
+    font-family: 'Roboto Slab', serif;
     
 }
 
@@ -115,7 +117,7 @@
 }
 
 .navbar-action-figures{
-    width: 130px;
+    width: 138px;
     margin-left: 25px;
 }
 
