@@ -1,30 +1,29 @@
 package ivy.marvel.Capstone.Contoller;
 
 
-import ivy.marvel.Capstone.Model.User;
-import ivy.marvel.Capstone.Service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import ivy.marvel.Capstone.Response.MessageResponse;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+
+@CrossOrigin(origins = "*", maxAge = 4800)
 @RestController
-@RequestMapping("/userApi")
+@RequestMapping("/api/test")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
+    @GetMapping("/all")
+    public MessageResponse allAccess() {
+        return new MessageResponse("Server is up.....");
     }
 
-    @CrossOrigin
-    @PostMapping("/Register")
-    public void registerUser(@RequestBody User newUser){
-    userService.registerNewUser(newUser);
+    @GetMapping("/greeting")
+    @PreAuthorize("isAuthenticated()")
+    public MessageResponse userAccess() {
 
-    @CrossOrigin
-    @GetMapping Mapping("/Login")
+        return new MessageResponse("Congratulations! You are an authenticated user.");
+    }
 
-
-}
 }
