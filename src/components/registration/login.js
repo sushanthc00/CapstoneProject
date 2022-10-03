@@ -1,121 +1,164 @@
-import React from 'react';
-import TextField from '@mui/material/TextField';
-import Card from '@mui/material/Card';
-import { Button } from '@mui/material';
+import React, {Component} from 'react';
+import { Navigate } from 'react-router-dom';
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
 import Navbar from '../Navbar';
 import Footer from '../Footer';
-import axios from 'axios';
+import { connect } from "react-redux";
+import { login } from "../../actions/auth";
+import './login.css'
 
+const required = (value) => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+};
 
-class Login extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            username_helpertext : false,
-            password_helpertext : false,
-            username : "",
-            password : ""
-        }
-    }
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
 
-    setusername = (e) =>{
-        let user_id = e.target.value;
-        let user_helpertext = this.state.username_helpertext;
-        if(e.target.value)
-        {
-            user_helpertext = false
-        }
-        else{
-           user_helpertext = true
-        }
-        this.setState({
-            username : user_id,
-            username_helpertext : user_helpertext
+    this.state = {
+      username: "",
+      password: "",
+      loading: false,
+    };
+  }
+
+  onChangeUsername(e) {
+    this.setState({
+      username: e.target.value,
+    });
+  }
+
+  onChangePassword(e) {
+    this.setState({
+      password: e.target.value,
+    });
+  }
+
+  handleLogin(e) {
+    e.preventDefault();
+
+    this.setState({
+      loading: true,
+    });
+
+    this.form.validateAll();
+
+    const { dispatch, history } = this.props;
+
+    if (this.checkBtn.context._errors.length === 0) {
+      dispatch(login(this.state.username, this.state.password))
+        .then(() => {
+          history.push("/profile");
+          window.location.reload();
         })
+        .catch(() => {
+          this.setState({
+            loading: false
+          });
+        });
+    } else {
+      this.setState({
+        loading: false,
+      });
+    }
+  }
+
+  render() {
+    const { isLoggedIn, message } = this.props;
+
+    if (isLoggedIn) {
+      return <Navigate to="/profile" />;
     }
 
-    setPassword = (e) => {
-        let password = e.target.value;
-        let pass_helpertext = this.state.password_helpertext;
-        if(e.target.value)
-        {
-            pass_helpertext = false
-        }
-        else{
-            pass_helpertext = true
-        }
-        this.setState({
-            password : password,
-            password_helpertext : pass_helpertext
-        })
-    }
-    
-    handleSubmit = () => {
-        if(this.state.password != "" && this.state.username != "")
-        {
-
-        }
-        else
-        {
-            if(this.state.username == "")
-            {
-                this.setState({username_helpertext : true})
-            }
-            if(this.state.password == "")
-            {
-                this.setState({password_helpertext : true})
-            }
-           
-        }
-    }
-
-    render()
-    {
-        return(
-            <>
-            <Navbar />
+    return (
+      <div className="main-container">
+        <Navbar />
             <Footer />
-            <Card sx={{ justifyContent: 'center',  
-                        width: '25%', 
-                        marginLeft:'35%', 
-                        marginTop : '10%', 
-                        backgroundColor: 'lavender'}}>
-                <div style={{textAlign: 'center'}}>
-            <div>
-            <TextField
-            value = {this.state.username}
-          id="standard-error-helper-text"
-          label="Username"
-          variant= "standard"
-          sx={{width : '40%'}}
-          error = {this.state.username_helpertext}
-          onChange = {this.setusername}
-        />
+        <div className="login">
+            
+          <h1><center>Login</center></h1>
+
+
+          <Form
+            onSubmit={this.handleLogin}
+            ref={(c) => {
+              this.form = c;
+            }}
+          >
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
+              <Input
+                type="text"
+                className="form-control"
+                name="username"
+                value={this.state.username}
+                onChange={this.onChangeUsername}
+                validations={[required]}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <Input
+                type="password"
+                className="form-control"
+                name="password"
+                value={this.state.password}
+                onChange={this.onChangePassword}
+                validations={[required]}
+              />
+            </div>
+
+            <div className="form-group">
+              <button
+                className="btn btn-dark btn-block"
+                disabled={this.state.loading}
+              >
+                {this.state.loading && (
+                  <span className="spinner-border spinner-border-sm"></span>
+                )}
+                <span>Login</span>
+              </button>
+            </div>
+
+            {message && (
+              <div className="form-group">
+                <div className="alert alert-danger" role="alert">
+                  {message}
+                </div>
+              </div>
+            )}
+            <CheckButton
+              style={{ display: "none" }}
+              ref={(c) => {
+                this.checkBtn = c;
+              }}
+            />
+          </Form>
         </div>
-        <br/>
-            <div>
-            <TextField
-            value={this.state.password}
-          label="Password"
-          id="standard-error-helper-text"
-          variant="standard"
-          sx={{width : '40%'}}
-          error = {this.state.password_helpertext}
-          onChange = {this.setPassword}
-        />
-            </div>
-            <br/>
-            <div>
-                <Button variant="contained" sx={{width : '40%'}} onClick={this.handleSubmit}>Login</Button>
-            </div>
-            <br/>
-            </div>
-    
-    </Card>
-           
-            </>
-        );
-    }
+      </div>
+    );
+  }
 }
 
-export default Login;
+function mapStateToProps(state) {
+  const { isLoggedIn } = state.auth;
+  const { message } = state.message;
+  return {
+    isLoggedIn,
+    message
+  };
+}
+
+export default connect(mapStateToProps)(Login);

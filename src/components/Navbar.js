@@ -1,12 +1,61 @@
 import React from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { connect } from 'react-redux';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Router } from 'react-router-dom';
 import './Navbar.css';
 import Image from '../components/images/MadOverMarvel Logo.png';
+import { logout } from "../actions/auth"
+import { clearMessage } from "../actions/message";
+import { history } from '../helpers/history';
+import EventBus from "../common/EventBus";
 
 
-function Navbar() {
-  return (
+class Navbar extends React.Component{
+
+    constructor(props) {
+        super(props);
+        this.logOut = this.logOut.bind(this);
+    
+        this.state = {
+          currentUser: undefined,
+        };
+    
+        history.listen((location) => {
+          props.dispatch(clearMessage()); 
+        });
+      }
+    
+      componentDidMount() {
+        const user = this.props.user;
+    
+        if (user) {
+          this.setState({
+            currentUser: user
+          });
+        }
+    
+        EventBus.on("logout", () => {
+          this.logOut();
+        });
+      }
+    
+      componentWillUnmount() {
+        EventBus.remove("logout");
+      }
+    
+      logOut() {
+        this.props.dispatch(logout());
+        this.setState({
+          currentUser: undefined,
+        });
+      }
+    
+    render(){
+
+        const { currentUser} = this.state;
+
+    return (
     <>
     <nav className='navbar'>
         <div className='navbar-container'>
@@ -76,18 +125,32 @@ function Navbar() {
             </div>
             </Link>
 
-            <Link to = '/Login' style={{textDecoration: 'none'}} className='navbar-login'>
-            <div className= 'login-mom'>
-                <h3>Login</h3>
-            </div>
-            </Link>
 
-            <Link to = '/Register' style={{textDecoration: 'none'}} className='navbar-register'>
-            <div className= 'register-mom'>
-                <h3>Register</h3>
-            </div>
-            </Link>
+            {currentUser ? (
+              <div className="profile">
+                
+                  <Link to={"/profile"} className="nav-link">
+                    Profile
+                  </Link>
 
+                  <a href="/login" className="nav-link" onClick={this.logOut}>
+                    LogOut
+                  </a>
+             
+              </div>
+            ) : (
+            <><Link to='/Login' style={{ textDecoration: 'none' }} className='navbar-login'>
+                                <div className='login-mom'>
+                                    <h3>Login</h3>
+                                </div>
+                            </Link>
+                    
+                            <Link to='/Register' style={{ textDecoration: 'none' }} className='navbar-register'>
+                                    <div className='register-mom'>
+                                        <h3>Register</h3>
+                                    </div>
+                                </Link></>
+            )}
             <Link to = '/' style={{textDecoration: 'none'}} className='navbar-cart'>
             <div className= 'cart-mom'>
             <h3> Cart</h3>    
@@ -102,5 +165,13 @@ function Navbar() {
     
   )
 }
+}
 
-export default Navbar
+function mapStateToProps(state) {
+    const { user } = state.auth;
+    return {
+      user,
+    };
+  }
+  
+  export default connect(mapStateToProps)(Navbar);

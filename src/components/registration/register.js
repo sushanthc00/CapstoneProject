@@ -1,185 +1,179 @@
 import React from 'react';
-import TextField from '@mui/material/TextField';
-import Card from '@mui/material/Card';
-import { Button } from '@mui/material';
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
 import Navbar from '../Navbar';
 import Footer from '../Footer';
-import axios from 'axios';
-import Notification from 'rc-notification/es/Notifications';
-import {Link, Navigate} from 'react-router-dom';
+import { register } from '../../actions/auth';
+import { connect } from 'react-redux';
 
-class Register extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            username : "",
-            password : "",
-            confirm_password : "",
-            username_helpertext : false,
-            password_helpertext : false,
-            confirmPass_helpertext : false,
-            enable_registration : 0,
-        }
-    }
 
-    setusername = (e)  =>{
-        let user_id = e.target.value;
-        let user_helpertext = this.state.username_helpertext;
-        if(e.target.value)
-        {
-            user_helpertext = false
-        }
-        else{
-           user_helpertext = true
-        }
-        this.setState({
-            username : user_id,
-            username_helpertext : user_helpertext
-        })
+const required = (value) => {
+    if (!value) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This field is required!
+        </div>
+      );
     }
-
-    setPassword = (e) => {
-        let password = e.target.value;
-        let pass_helpertext = this.state.password_helpertext;
-        if(e.target.value)
-        {
-            pass_helpertext = false
-        }
-        else{
-            pass_helpertext = true
-        }
-        this.setState({
-            password : password,
-            password_helpertext : pass_helpertext
-        })
+  };
+  
+  const vusername = (value) => {
+    if (value.length < 3 || value.length > 20) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          The username must be between 3 and 20 characters.
+        </div>
+      );
     }
+  };
+  
+  const vpassword = (value) => {
+    if (value.length < 6 || value.length > 40) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          The password must be between 6 and 40 characters.
+        </div>
+      );
+    }
+  };
+  
+  class Register extends React.Component {
+    constructor(props) {
+      super(props);
+      this.handleRegister = this.handleRegister.bind(this);
+      this.onChangeUsername = this.onChangeUsername.bind(this);
+      this.onChangePassword = this.onChangePassword.bind(this);
+  
+      this.state = {
+        username: "",
+        password: "",
+        successful: false,
+      };
+    }
+  
+    onChangeUsername(e) {
+      this.setState({
+        username: e.target.value,
+      });
+    }
+  
+  
+    onChangePassword(e) {
+      this.setState({
+        password: e.target.value,
+      });
+    }
+  
+    handleRegister(e) {
+      e.preventDefault();
+  
+      this.setState({
+        successful: false,
+      });
+  
+      this.form.validateAll();
+  
+      if (this.checkBtn.context._errors.length === 0) {
+        this.props
+          .dispatch(
+            register(this.state.username, this.state.password)
+          )
+          .then(() => {
+            this.setState({
+              successful: true,
+            });
+          })
+          .catch(() => {
+            this.setState({
+              successful: false,
+            });
+          });
+      }
+    }
+  
     
-    setConfirmPassword = (e) => {
-        debugger;
-        let confirm_password = e.target.value;
-        let confirmpassword_helpertext = this.state.confirmPass_helpertext;
-        if(e.target.value)
-        {
-            confirmpassword_helpertext = false
-        }
-        else{
-            confirmpassword_helpertext = true
-        }
-        this.setState({
-            confirm_password : confirm_password,
-            confirmPass_helpertext : confirmpassword_helpertext
-        })
-    }
-
-    handleRegister = () => {
-        debugger;
-        if(this.state.password !== "" && this.state.username !== "" && this.state.confirm_password !== "")
-        {
-           axios.post("http://localhost:7656/userApi/Register",{
-            username : this.state.username,
-            password : this.state.password
-           }).then(data => 
-            {
-                return (<Link to="/"/>);
-            //     if(data.data.length > 0){
-
-            //         localStorage.setItem("enable_registration" , 1);
-            //         localStorage.setItem("username", data.data[0].username);
-            //         return <Navigate to="/"/>;
-            //     }
-            
-            
-            // else{
-            //     localStorage.setItem("enable_registration", 0);
-                
-            //     Notification.newInstance({}, notification => {
-            //         notification.notice({
-            //           content: 'Invalid Credentials'
-            //         });
-            //       });
-
-            // }
-        }
-
-            )
-        }
-        else
-        {
-            if(this.state.username == "")
-            {
-                this.setState({username_helpertext : true})
-            }
-            if(this.state.password == "")
-            {
-                this.setState({password_helpertext : true})
-            }
-            if(this.state.confirm_password == "")
-            {
-                this.setState({confirmPass_helpertext : true})
-            }
-           
-        }
-    }
     render()
     {
+
+        const { message } = this.props;
+
+
         return(
             <>
-            <Navbar/>
-            <Footer />
-            <Card sx={{  justifyContent: 'center', 
-                         width: '30%',
-                         height: '22vw', 
-                         marginLeft:'35%', 
-                         marginTop : '6%',
-                         paddingTop: '40px',
-                         backgroundImage: 'conic-gradient(thistle, lavender)'  }}>
-            <div style={{textAlign: 'center'}}>
-            <div>
-            <TextField
-            value = {this.state.username}
-          id="standard-error-helper-text"
-          label="Username"
-          variant="standard"
-          sx={{width : '40%'}}
-          error = {this.state.username_helpertext}
-          onChange={this.setusername}
-        />
-        </div>
-        <br/>
-            <div>
-            <TextField
-            value = {this.state.password}
-          label="Password"
-          id="standard-error-helper-text"
-          variant="standard"
-          sx={{width : '40%'}}
-          error = {this.state.password_helpertext}
-          onChange={this.setPassword}
-        />
-            </div>
-            <br/>
-            <div>
-            <TextField
-            value={this.state.confirm_password}
-          label="Re-Enter Password"
-          id="standard-error-helper-text"
-          variant="standard"
-          sx={{width : '40%'}}
-          error = {this.state.confirmPass_helpertext}
-          onChange={this.setConfirmPassword}
-          />
-            </div>
-            <br/>
-            <div>
-                <Button variant="contained" sx={{width : '40%'}} onClick={this.handleRegister}>Register</Button>
-            </div>
-            <br/>
-    </div>
-    </Card>
+                    <Navbar />
+                    <Footer />
            
-            </>
-        );
-    }
+            <div className="col-md-12">
+        <div className="card bg-light text-dark">
+
+          <h1><center>User Registration </center></h1>
+
+
+          <Form
+            onSubmit={this.handleRegister}
+            ref={(c) => {
+              this.form = c;
+            }}
+          >
+            {!this.state.successful && (
+              <div>
+                <div className="form-group">
+                  <label htmlFor="username">Username</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.onChangeUsername}
+                    validations={[required, vusername]}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <Input
+                    type="password"
+                    className="form-control"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.onChangePassword}
+                    validations={[required, vpassword]}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <button className="btn btn-dark btn-block">Register</button>
+                </div>
+              </div>
+            )}
+
+            {message && (
+              <div className="form-group">
+                <div className={this.state.successful ? "alert alert-success" : "alert alert-danger"} role="alert">
+                  {message}
+                </div>
+              </div>
+            )}
+            <CheckButton
+              style={{ display: "none" }}
+              ref={(c) => {
+                this.checkBtn = c;
+              }}
+            />
+          </Form>
+        </div>
+      </div>
+      </>
+    );
+  }
 }
 
-export default Register;
+function mapStateToProps(state) {
+  const { message } = state.message;
+  return {
+    message,
+  };
+}
+
+export default connect(mapStateToProps)(Register);

@@ -17,7 +17,8 @@ export default class AboutUs extends Component {
                         marginTop : '3%',
                         boxShadow: '10px 10px 20px rgba(0, 0, 0, 0.8)',
                         padding: '10px',
-                        backgroundColor: 'lavender'
+                        backgroundColor: 'lavender',
+                        fontFamily: 'Roboto Slab, serif'
                          }}>
 
             <div style={{textAlign: 'center'}}>

@@ -19,7 +19,7 @@ class App extends React.Component{
     return (
     <>      
       <Routes>
-          <Route path="/" element={<Homepage {...this.props} />}/>
+          <Route path="/" exact element={<Homepage {...this.props} />}/>
           <Route path="/Login" element={<Login  {...this.props}/>} />
           <Route path="/Register" element={<Register  {...this.props}/>} />
           <Route path="/AboutUs" element={<AboutUs  {...this.props}/>} />
