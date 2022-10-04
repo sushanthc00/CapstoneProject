@@ -1,5 +1,4 @@
 import React from 'react';
-import "bootstrap/dist/css/bootstrap.min.css";
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { Link, Router } from 'react-router-dom';
@@ -95,13 +94,13 @@ class Navbar extends React.Component{
     
     <nav className='navbar'>
         <div className='navbar-container-two'>
-            <Link to='/' style={{textDecoration: 'none'}}  className='navbar-mugs'>
+            <Link to='/Mugs' style={{textDecoration: 'none'}}  className='navbar-mugs'>
                 <div className='mugs-mom'>
                 <h3>Mugs</h3>
                 </div>
             </Link>
 
-            <Link to = '/' style={{textDecoration: 'none'}} className='navbar-keychains'>
+            <Link to = '/Keychains' style={{textDecoration: 'none'}} className='navbar-keychains'>
                 <div className='keychains-mom'>
                     <h3>Keychains</h3>
                 </div>
@@ -116,12 +115,6 @@ class Navbar extends React.Component{
             <Link to = '/' style={{textDecoration: 'none'}} className='navbar-misc'>
             <div className= 'misc-mom'>
                 <h3>Miscellaneous</h3>
-            </div>
-            </Link>
-
-            <Link to = '/' style={{textDecoration: 'none'}} className='navbar-search'>
-            <div className= 'search-mom'>
-                <h3>Search Bar Here</h3>
             </div>
             </Link>
 

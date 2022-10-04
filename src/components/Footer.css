@@ -6,6 +6,7 @@
     flex-direction: row;
     bottom: 0px;
     position: fixed;
+    font-family: 'Silkscreen', cursive;
   }
 
   .footer-text{
@@ -20,7 +21,7 @@
   }
 
   .contact{
-    width: 350px;
+    width: 450px;
     color: white;
-    margin-left: 500px;
+    margin-left: 400px;
   }

@@ -14,11 +14,11 @@ export default class AboutUs extends Component {
             <Card sx={{ justifyContent: 'center',  
                         width: '75%', 
                         marginLeft:'13%', 
-                        marginTop : '3%',
+                        marginTop : '12%',
                         boxShadow: '10px 10px 20px rgba(0, 0, 0, 0.8)',
                         padding: '10px',
                         backgroundColor: 'lavender',
-                        fontFamily: 'Roboto Slab, serif'
+                        fontFamily: 'Silkscreen, cursive'
                          }}>
 
             <div style={{textAlign: 'center'}}>

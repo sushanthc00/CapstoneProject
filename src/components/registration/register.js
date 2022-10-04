@@ -6,6 +6,8 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { register } from '../../actions/auth';
 import { connect } from 'react-redux';
+import { isEmail } from "validator";
+import './register.css';
 
 
 const required = (value) => {
@@ -13,6 +15,16 @@ const required = (value) => {
       return (
         <div className="alert alert-danger" role="alert">
           This field is required!
+        </div>
+      );
+    }
+  };
+
+  const email = (value) => {
+    if (!isEmail(value)) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This is not a valid email.
         </div>
       );
     }
@@ -43,10 +55,12 @@ const required = (value) => {
       super(props);
       this.handleRegister = this.handleRegister.bind(this);
       this.onChangeUsername = this.onChangeUsername.bind(this);
+      this.onChangeEmail = this.onChangeEmail.bind(this);
       this.onChangePassword = this.onChangePassword.bind(this);
   
       this.state = {
         username: "",
+        email: "",
         password: "",
         successful: false,
       };
@@ -57,7 +71,12 @@ const required = (value) => {
         username: e.target.value,
       });
     }
-  
+
+    onChangeEmail(e) {
+        this.setState({
+          email: e.target.value,
+        });
+      }
   
     onChangePassword(e) {
       this.setState({
@@ -77,7 +96,7 @@ const required = (value) => {
       if (this.checkBtn.context._errors.length === 0) {
         this.props
           .dispatch(
-            register(this.state.username, this.state.password)
+            register(this.state.username, this.state.email, this.state.password)
           )
           .then(() => {
             this.setState({
@@ -104,8 +123,8 @@ const required = (value) => {
                     <Navbar />
                     <Footer />
            
-            <div className="col-md-12">
-        <div className="card bg-light text-dark">
+            
+        <div className="register">
 
           <h1><center>User Registration </center></h1>
 
@@ -127,6 +146,18 @@ const required = (value) => {
                     value={this.state.username}
                     onChange={this.onChangeUsername}
                     validations={[required, vusername]}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.onChangeEmail}
+                    validations={[required, email]}
                   />
                 </div>
 
@@ -163,7 +194,7 @@ const required = (value) => {
             />
           </Form>
         </div>
-      </div>
+      
       </>
     );
   }
