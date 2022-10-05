@@ -7,78 +7,59 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { BsFillStarFill } from "react-icons/bs";
-import MoonKnight from "../images/mnkc.jpg"
-import BlackPanther from "../images/bpkc.jpg"
-import DrStrange from "../images/dskc.jpg"
-import IronMan from "../images/imkc.jpg"
-import Spidey from "../images/spideykc.jpg";
+import Book from "../images/book.png"
+import Brushes from "../images/brushes.jpg"
+import Cap from "../images/bracelet.jpg"
+import Tchalla from "../images/tchalla.jpg"
+import Hydra from "../images/hydrapedant.jpg";
 import axios from 'axios';
+import ProductService from '../../services/productservice';
 
 
-export default class Keychains extends Component {
+export default class Miscellaneous extends Component {
     constructor(props){
         super(props)
         this.state = {
-            chains: [],
-            images:[{key : 1, value : DrStrange}, {key : 2, value: IronMan}, {key : 3, value : Spidey},
-              {key : 4, value : BlackPanther}, {key : 5, value: MoonKnight}],
-            i:0, j:0,
-            quantity : 0,
-            remove : false
-    };
-  }
-    Add = () =>
-    {
-        this.setState({quantity : this.state.quantity + 1})
-        this.setState({newprice : this.state.defaultprice * (this.state.quantity + 1)})
-        this.setState({remove : false})
-    }
-    Remove = () =>
-    {
-    if(this.state.quantity > 0)
-    {
+          misc:[],
+          images:[{key : 1, value : Cap}, {key : 2, value: Book}, {key : 3, value : Tchalla},
+                  {key : 4, value : Brushes}, {key : 5, value: Hydra}],
+          i:0, j:0
+  };
+}
 
-         this.setState({quantity : this.state.quantity - 1})
-        this.setState({newprice : this.state.newprice - ( this.state.defaultprice)})
-    }
-    else
-    {
-        this.setState({remove : true})
-    }
-    }
+  componentDidMount(){
 
-    componentDidMount(){
-
-      axios.get("http://localhost:7658/api/Product/keychains").then((res)=>{
-        this.setState({chains:res.data});
-            });
-        }
+    axios.get("http://localhost:7658/api/Product/misc").then((res)=>{
+      this.setState({misc:res.data});
+          });
+      }
 
 render() {
-  return (
-    <>
-    <Navbar />
-    
+return (
+  <>
+  <Navbar />
+  
+  
     <div className='box'>
 
-      {this.state.chains.map(
-        (chain) =>
+      {this.state.misc.map(
+        (miscs) =>
 
         <>
         <div className="container">
         <div className='image'>
       <img src={this.state.images[this.state.i++].value} width="200px" height="200px"></img>
       <Typography gutterBottom variant="h5" component="div">
-             {chain.chainName}
+             {miscs.name}
             </Typography>
             <Typography variant="body3" color="text.secondary">
               <div className='rating'>
-                  <BsFillStarFill /> {chain.ratings}
+                  <BsFillStarFill /> {miscs.ratings}
               </div>
               </Typography>
               
               <Typography variant="body3" color="text.primary">
-                 MRP : Rs. {chain.price}<br/>
+                 MRP : Rs. {miscs.price}<br/>
                  
             </Typography>
 
@@ -101,4 +82,3 @@ render() {
 );
 }
 }
-

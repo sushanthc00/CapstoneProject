@@ -9,6 +9,8 @@ import AboutUs from './components/AboutUs';
 import Mugs from './components/categories/mugs';
 import Keychains from './components/categories/keychains';
 import Profile from './components/registration/profile';
+import ActionFigures from './components/categories/actionfigures';
+import Miscellaneous from './components/categories/miscellaneous';
 
 
 
@@ -29,6 +31,8 @@ class App extends React.Component{
           <Route path="/Mugs" element={<Mugs   {...this.props}/>} />
           <Route path="/Keychains" element={<Keychains  {...this.props}/>} />
           <Route path="/profile" element={<Profile  {...this.props}/>} />
+          <Route path="/ActionFigures" element={<ActionFigures  {...this.props}/>} />
+          <Route path="/Miscellaneous" element={<Miscellaneous {...this.props}/>} />
           
       </Routes>
 

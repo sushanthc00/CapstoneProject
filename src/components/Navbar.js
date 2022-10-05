@@ -106,13 +106,13 @@ class Navbar extends React.Component{
                 </div>
             </Link>
 
-            <Link to = '/' style={{textDecoration: 'none'}} className='navbar-action-figures'>
+            <Link to = '/ActionFigures' style={{textDecoration: 'none'}} className='navbar-action-figures'>
             <div className= 'action-figures-mom'>
                 <h3> Action Figures</h3>
             </div>
             </Link>
 
-            <Link to = '/' style={{textDecoration: 'none'}} className='navbar-misc'>
+            <Link to = '/Miscellaneous' style={{textDecoration: 'none'}} className='navbar-misc'>
             <div className= 'misc-mom'>
                 <h3>Miscellaneous</h3>
             </div>
