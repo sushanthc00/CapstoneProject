@@ -52,7 +52,7 @@ public class AuthController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
         return ResponseEntity
-                .ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername()));
+                .ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(),  userDetails.getEmail()));
     }
 
     @CrossOrigin
@@ -62,8 +62,12 @@ public class AuthController {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: username is already taken!"));
         }
 
+        if (userRepository.existsByEmail(registerRequest.getEmail())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
+        }
+
         // Create new user account
-        User user = new User(registerRequest.getUsername(),
+        User user = new User(registerRequest.getUsername(), registerRequest.getEmail(),
                 encoder.encode(registerRequest.getPassword()));
 
         userRepository.save(user);
