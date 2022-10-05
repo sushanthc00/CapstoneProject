@@ -16,14 +16,17 @@ public class Products {
     @Column(name = "price")
     private int price;
 
+    @Column(name = "ratings")
+    private String ratings;
     public Products(){
 
     }
 
-    public Products(int productId, String productName, int price) {
+    public Products(int productId, String productName, int price, String ratings) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
+        this.ratings = ratings;
     }
 
     public int getproductId() {
@@ -48,6 +51,14 @@ public class Products {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(String ratings) {
+        this.ratings = ratings;
     }
 }
 

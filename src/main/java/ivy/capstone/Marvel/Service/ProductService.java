@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.spi.ServiceRegistry;
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -22,8 +23,8 @@ public class ProductService {
         this.productsRepo = productsRepo;
     }
 
-    public Products getProduct(int product_id) {
-        return productsRepo.findById(product_id).get();
+    public List<Products> getProducts() {
+        return productsRepo.findAll();
     }
 }
 
