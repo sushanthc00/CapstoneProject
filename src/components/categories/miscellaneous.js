@@ -7,13 +7,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { BsFillStarFill } from "react-icons/bs";
-import Book from "../images/book.png"
-import Brushes from "../images/brushes.jpg"
-import Cap from "../images/bracelet.jpg"
-import Tchalla from "../images/tchalla.jpg"
-import Hydra from "../images/hydrapedant.jpg";
 import axios from 'axios';
-import ProductService from '../../services/productservice';
 
 
 export default class Miscellaneous extends Component {
@@ -21,11 +15,57 @@ export default class Miscellaneous extends Component {
         super(props)
         this.state = {
           misc:[],
-          images:[{key : 1, value : Cap}, {key : 2, value: Book}, {key : 3, value : Tchalla},
-                  {key : 4, value : Brushes}, {key : 5, value: Hydra}],
-          i:0, j:0
+          quantity:[0,0,0,0,0],
+          remove:false
   };
 }
+
+Add = i =>
+{
+  this.setState(state => {
+    const quantity = state.quantity.map((item, j) => {
+      if (j === i) {
+        return item + 1;
+      } else {
+        return item;
+      }
+    });
+
+    return {
+      quantity,
+    };
+  });
+
+  this.setState({remove : false})
+
+};
+Remove = i =>
+{
+if(this.state.quantity[i] > 0)
+{
+
+     this.setState(state => {
+      const quantity = state.quantity.map((item, j) =>{
+        if (j===i){
+          return item - 1;
+        }
+        else{
+          return item;
+        }
+      });
+
+      return{
+        quantity
+      }
+
+     })
+}
+else
+{
+    this.setState({remove : true})
+}
+}
+
 
   componentDidMount(){
 
@@ -48,7 +88,7 @@ return (
         <>
         <div className="container">
         <div className='image'>
-      <img src={this.state.images[this.state.i++].value} width="200px" height="200px"></img>
+      <img src={miscs.images} width="200px" height="200px"></img>
       <Typography gutterBottom variant="h5" component="div">
              {miscs.name}
             </Typography>
@@ -64,11 +104,11 @@ return (
             </Typography>
 
             <div className='buttons'>
-            <Button size="small" onClick={this.Remove} disabled={this.state.remove}><RemoveIcon/></Button>
+            <Button size="small"  onClick={() => this.Remove(miscs.id - 1)} disabled={this.state.remove}><RemoveIcon/></Button>
             <Typography variant="body3" color="red">
-            Add to Cart ({this.state.quantity})
+            Add to Cart ({this.state.quantity[miscs.id -1]})
                           </Typography>
-            <Button size="small"  onClick={this.Add}><AddIcon/></Button>
+            <Button size="small"  onClick={() =>this.Add(miscs.id - 1)}><AddIcon/></Button>
             </div>
             </div>
             </div>

@@ -22,9 +22,57 @@ export default class ActionFigures extends Component {
           figures:[],
           images:[{key : 1, value : Thanos}, {key : 2, value: Thor}, {key : 3, value : Groot},
                   {key : 4, value : CapMarvel}, {key : 5, value: Infinity}],
-          i:0, j:0
+          i:0, j:0,
+          quantity : [0,0,0,0,0],
+          remove : false
   };
 }
+
+Add = i =>
+    {
+      this.setState(state => {
+        const quantity = state.quantity.map((item, j) => {
+          if (j === i) {
+            return item + 1;
+          } else {
+            return item;
+          }
+        });
+  
+        return {
+          quantity,
+        };
+      });
+
+      this.setState({remove : false})
+
+    };
+    Remove = i =>
+    {
+    if(this.state.quantity[i] > 0)
+    {
+
+         this.setState(state => {
+          const quantity = state.quantity.map((item, j) =>{
+            if (j===i){
+              return item - 1;
+            }
+            else{
+              return item;
+            }
+          });
+
+          return{
+            quantity
+          }
+
+         })
+    }
+    else
+    {
+        this.setState({remove : true})
+    }
+    }
 
   componentDidMount(){
 
@@ -47,7 +95,7 @@ return (
         <>
         <div className="container">
         <div className='image'>
-      <img src={this.state.images[this.state.i++].value} width="200px" height="200px"></img>
+      <img src={figure.images} width="230px" height="200px"></img>
       <Typography gutterBottom variant="h5" component="div">
              {figure.name}
             </Typography>
@@ -63,11 +111,11 @@ return (
             </Typography>
 
             <div className='buttons'>
-            <Button size="small" onClick={this.Remove} disabled={this.state.remove}><RemoveIcon/></Button>
+            <Button size="small" onClick={() => this.Remove(figure.id - 1)} disabled={this.state.remove}><RemoveIcon/></Button>
             <Typography variant="body3" color="red">
-            Add to Cart ({this.state.quantity})
+            Add to Cart ({this.state.quantity[figure.id - 1]})
                           </Typography>
-            <Button size="small"  onClick={this.Add}><AddIcon/></Button>
+            <Button size="small"  onClick={() =>this.Add(figure.id - 1)}><AddIcon/></Button>
             </div>
             </div>
             </div>

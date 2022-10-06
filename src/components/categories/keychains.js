@@ -20,26 +20,56 @@ export default class Keychains extends Component {
         super(props)
         this.state = {
             chains: [],
-            images:[{key : 1, value : DrStrange}, {key : 2, value: IronMan}, {key : 3, value : Spidey},
-              {key : 4, value : BlackPanther}, {key : 5, value: MoonKnight}],
-            i:0, j:0,
-            quantity : 0,
+            // images:[{key : 1, value : DrStrange}, {key : 2, value: IronMan}, {key : 3, value : Spidey},
+            //   {key : 4, value : BlackPanther}, {key : 5, value: MoonKnight}],
+            images: [DrStrange, IronMan, Spidey, BlackPanther, MoonKnight],
+            i:0,
+            j:0,
+            quantity : [0,0,0,0,0],
             remove : false
     };
+
+
   }
-    Add = () =>
+    Add = i =>
     {
-        this.setState({quantity : this.state.quantity + 1})
-        this.setState({newprice : this.state.defaultprice * (this.state.quantity + 1)})
-        this.setState({remove : false})
-    }
-    Remove = () =>
+      this.setState(state => {
+        const quantity = state.quantity.map((item, j) => {
+          if (j === i) {
+            return item + 1;
+          } else {
+            return item;
+          }
+        });
+  
+        return {
+          quantity,
+        };
+      });
+
+      this.setState({remove : false})
+
+    };
+    Remove = i =>
     {
-    if(this.state.quantity > 0)
+    if(this.state.quantity[i] > 0)
     {
 
-         this.setState({quantity : this.state.quantity - 1})
-        this.setState({newprice : this.state.newprice - ( this.state.defaultprice)})
+         this.setState(state => {
+          const quantity = state.quantity.map((item, j) =>{
+            if (j===i){
+              return item - 1;
+            }
+            else{
+              return item;
+            }
+          });
+
+          return{
+            quantity
+          }
+
+         })
     }
     else
     {
@@ -67,7 +97,8 @@ render() {
         <>
         <div className="container">
         <div className='image'>
-      <img src={this.state.images[this.state.i++].value} width="200px" height="200px"></img>
+   
+      <img src={this.state.images[chain.id - 1]} width="200px" height="200px"></img>
       <Typography gutterBottom variant="h5" component="div">
              {chain.chainName}
             </Typography>
@@ -83,11 +114,16 @@ render() {
             </Typography>
 
             <div className='buttons'>
-            <Button size="small" onClick={this.Remove} disabled={this.state.remove}><RemoveIcon/></Button>
+             <Button size="small" onClick={() => this.Remove(chain.id - 1)} disabled={this.state.remove}><RemoveIcon/></Button>
             <Typography variant="body3" color="red">
-            Add to Cart ({this.state.quantity})
-                          </Typography>
-            <Button size="small"  onClick={this.Add}><AddIcon/></Button>
+            Add to Cart ({this.state.quantity[chain.id -1]})
+                          
+                          
+            {/* {this.state.quantity.map((item, index) => ( */}
+              <Button size="small" onClick={() =>this.Add(chain.id - 1)}><AddIcon/></Button>
+            {/* ))} */}
+            </Typography>
+            
             </div>
             </div>
             </div>

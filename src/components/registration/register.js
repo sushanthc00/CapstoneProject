@@ -8,6 +8,7 @@ import { register } from '../../actions/auth';
 import { connect } from 'react-redux';
 import { isEmail } from "validator";
 import './register.css';
+import {swal} from 'sweetalert'
 
 
 const required = (value) => {
