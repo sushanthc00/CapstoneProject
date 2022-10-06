@@ -1,0 +1,36 @@
+.intro-container{
+    margin-top: 18%;
+    width: 83%;
+    margin-left: 8.5%;
+    height: 340px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    background: #2e8286;
+    text-align: center;
+    align-items: center;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.logo-container{
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    background: #5b295d;
+    text-align: center;
+    align-items: center;
+    font-family: 'Silkscreen', cursive;
+}
+
+.message-container{
+    padding-left: 10px;
+    color: white;
+}
+
+h1{
+    color: rgb(192, 41, 14);
+}

@@ -8,6 +8,7 @@ import Footer from '../Footer';
 import { connect } from "react-redux";
 import { login } from "../../actions/auth";
 import './login.css'
+import { Card } from '@mui/material';
 
 
 const required = (value) => {
@@ -90,7 +91,6 @@ class Login extends Component {
             
           <h1><center>Login</center></h1>
 
-
           <Form
             onSubmit={this.handleLogin}
             ref={(c) => {
@@ -147,6 +147,7 @@ class Login extends Component {
               }}
             />
           </Form>
+          
         </div>
       </div>
     );

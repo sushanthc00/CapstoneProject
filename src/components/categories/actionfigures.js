@@ -7,12 +7,8 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { BsFillStarFill } from "react-icons/bs";
-import Thanos from "../images/thanosaf.jpg"
-import CapMarvel from "../images/marvelaf.jpg"
-import Groot from "../images/grootaf.jpg"
-import Thor from "../images/thoraf.jpg"
-import Infinity from "../images/infinityaf.jpg"
 import axios from 'axios';
+import Cart from '../cart';
 
 
 export default class ActionFigures extends Component {
@@ -20,8 +16,6 @@ export default class ActionFigures extends Component {
         super(props)
         this.state = {
           figures:[],
-          images:[{key : 1, value : Thanos}, {key : 2, value: Thor}, {key : 3, value : Groot},
-                  {key : 4, value : CapMarvel}, {key : 5, value: Infinity}],
           i:0, j:0,
           quantity : [0,0,0,0,0],
           remove : false

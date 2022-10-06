@@ -11,6 +11,7 @@ import Keychains from './components/categories/keychains';
 import Profile from './components/registration/profile';
 import ActionFigures from './components/categories/actionfigures';
 import Miscellaneous from './components/categories/miscellaneous';
+import Payment from './components/Payment';
 
 
 
@@ -33,6 +34,7 @@ class App extends React.Component{
           <Route path="/profile" element={<Profile  {...this.props}/>} />
           <Route path="/ActionFigures" element={<ActionFigures  {...this.props}/>} />
           <Route path="/Miscellaneous" element={<Miscellaneous {...this.props}/>} />
+          <Route path="/Payment" element={<Payment {...this.props}/>} />
           
       </Routes>
 

@@ -8,7 +8,6 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { BsFillStarFill } from "react-icons/bs";
 import axios from "axios";
-import ProductService from '../../services/productservice';
 
 
 export default class Mugs extends Component {

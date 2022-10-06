@@ -70,13 +70,13 @@ class Navbar extends React.Component{
                 </div>
             </Link>
 
-            <Link to = '/' style={{textDecoration: 'none'}} className='navbar-order'>
+            <Link to = '/Payment' style={{textDecoration: 'none'}} className='navbar-order'>
             <div className= 'order-mom'>
-                <h3> My Orders</h3>
+                <h3>Payment</h3>
             </div>
             </Link>
 
-            <Link to = '/' style={{textDecoration: 'none'}} className='navbar-profile'>
+            <Link to = '/profile' style={{textDecoration: 'none'}} className='navbar-profile'>
             <div className= 'profile-mom'>
                 <h3>My Profile</h3>
             </div>
