@@ -18,15 +18,21 @@ public class Products {
 
     @Column(name = "ratings")
     private String ratings;
+
+    @Column(name = "images")
+    private String images;
+
+
     public Products(){
 
     }
 
-    public Products(int productId, String productName, int price, String ratings) {
+    public Products(int productId, String productName, int price, String ratings, String images) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
         this.ratings = ratings;
+        this.images = images;
     }
 
     public int getproductId() {
@@ -59,6 +65,14 @@ public class Products {
 
     public void setRatings(String ratings) {
         this.ratings = ratings;
+    }
+
+    public String getImages() {
+        return images;
+    }
+
+    public void setImages(String images) {
+        this.images = images;
     }
 }
 

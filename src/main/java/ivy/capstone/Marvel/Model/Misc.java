@@ -20,13 +20,17 @@ public class Misc {
     @Column(name = "ratings")
     private String ratings;
 
+    @Column(name = "images")
+    private String images;
+
     public Misc(){}
 
-    public Misc(long id, String name, int price, String ratings) {
+    public Misc(long id, String name, int price, String ratings, String images) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.ratings = ratings;
+        this.images = images;
     }
 
     public long getId() {
@@ -59,5 +63,13 @@ public class Misc {
 
     public void setRatings(String ratings) {
         this.ratings = ratings;
+    }
+
+    public String getImages() {
+        return images;
+    }
+
+    public void setImages(String images) {
+        this.images = images;
     }
 }
