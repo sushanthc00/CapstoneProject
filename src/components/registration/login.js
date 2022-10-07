@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
@@ -14,7 +14,7 @@ import { Card } from '@mui/material';
 const required = (value) => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger" role="alert" color='red'>
         This field is required!
       </div>
     );
@@ -123,7 +123,7 @@ class Login extends Component {
 
             <div className="form-group">
               <button
-                className="btn btn-dark btn-block"
+                className="btn btn-dark btn-block" 
                 disabled={this.state.loading}
               >
                 {this.state.loading && (
@@ -135,7 +135,7 @@ class Login extends Component {
 
             {message && (
               <div className="form-group">
-                <div className="alert alert-danger" role="alert">
+                <div className="alert alert-danger" role="alert" color='red'>
                   {message}
                 </div>
               </div>
@@ -146,6 +146,12 @@ class Login extends Component {
                 this.checkBtn = c;
               }}
             />
+
+            <Link to='/ForgotPassword' className='forgot-pass'>
+            <div className= 'fg-password'>
+                <h5> Forgot Password? Click Here</h5>
+            </div>
+            </Link>
           </Form>
           
         </div>

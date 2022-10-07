@@ -48,6 +48,7 @@ class Navbar extends React.Component{
         this.setState({
           currentUser: undefined,
         });
+        //window.location.reload(true);
       }
     
     render(){
@@ -68,12 +69,6 @@ class Navbar extends React.Component{
                 <div className='name-mom'>
                     <h2>MAD OVER MARVEL</h2>
                 </div>
-            </Link>
-
-            <Link to = '/Payment' style={{textDecoration: 'none'}} className='navbar-order'>
-            <div className= 'order-mom'>
-                <h3>Payment</h3>
-            </div>
             </Link>
 
             <Link to = '/profile' style={{textDecoration: 'none'}} className='navbar-profile'>
@@ -120,15 +115,13 @@ class Navbar extends React.Component{
 
 
             {currentUser ? (
-              <div className="profile">
+              <div className='profile-logout'>
                 
-                  <Link to={"/profile"} className="nav-link">
-                    Profile
+                  <Link to='/Login' onClick={this.logOut} className='log-out' style={{ textDecoration: 'none' }} >
+                    <div className= 'logout-mom'>
+                      <h3>LogOut</h3>
+                      </div> 
                   </Link>
-
-                  <a href="/login" className="nav-link" onClick={this.logOut}>
-                    LogOut
-                  </a>
              
               </div>
             ) : (
@@ -144,7 +137,7 @@ class Navbar extends React.Component{
                                     </div>
                                 </Link></>
             )}
-            <Link to = '/' style={{textDecoration: 'none'}} className='navbar-cart'>
+            <Link to = '/Cart' style={{textDecoration: 'none'}} className='navbar-cart'>
             <div className= 'cart-mom'>
             <h3> Cart</h3>    
             </div>

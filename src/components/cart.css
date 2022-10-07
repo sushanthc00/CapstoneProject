@@ -1,0 +1,28 @@
+.cart-container{
+    width: 40%;
+    height: 460px;
+   
+    margin-top: 140px;
+    padding-top: 10px;
+    margin-left: 30%;
+    box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.8);
+    border-radius: 12px;
+    background: #b8a4a4;
+    flex-direction: row;
+    align-items: center;
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .buttons{
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+  }
+  
+
+.cart-main{
+    display: flex;
+    flex-direction: row;
+}

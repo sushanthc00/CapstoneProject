@@ -12,7 +12,8 @@ import Profile from './components/registration/profile';
 import ActionFigures from './components/categories/actionfigures';
 import Miscellaneous from './components/categories/miscellaneous';
 import Payment from './components/Payment';
-
+import ForgotPassword from './components/ForgotPassword';
+import Cart from './components/cart';
 
 
 class App extends React.Component{
@@ -35,6 +36,8 @@ class App extends React.Component{
           <Route path="/ActionFigures" element={<ActionFigures  {...this.props}/>} />
           <Route path="/Miscellaneous" element={<Miscellaneous {...this.props}/>} />
           <Route path="/Payment" element={<Payment {...this.props}/>} />
+          <Route path="/ForgotPassword" element={<ForgotPassword {...this.props}/>} />
+          <Route path="/Cart" element={<Cart {...this.props}/>} />
           
       </Routes>
 

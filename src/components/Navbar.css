@@ -1,190 +1,207 @@
 .navbar-container{
-    top: 0%;
-    position: fixed;
-    font-size: 16px;
-    width: 100%;
-    height: 65px;
-    display: flex;
-    flex-direction: row;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.8);
-    border-radius: 4px;
-    background: #5b295d;
-    text-align: center;
-    align-items: center;
+    top: 0% ;
+    position: fixed ;
+    font-size: 16px ;
+    width: 100% ;
+    height: 65px ;
+    display: flex ;
+    flex-direction: row ;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.8) ;
+    border-radius: 4px ;
+    background: #5b295d ;
+    text-align: center ;
+    align-items: center ;
     font-family: 'Silkscreen', cursive;
     
 }
 
 .logo-mom-container{
-   max-width: 105px;
-   max-height: 80px;
+   max-width: 105px ;
+   max-height: 80px ;
 }
 
 .logo-mom{
-    width: 100%;
-    height: 100%;
+    width: 100% ;
+    height: 100% ;
 }
 
 .navbar-name{ 
-    width: 355px;
-    margin-left: 450px;
+    width: 355px ;
+    margin-left: 450px ;
 }
 
 .name-mom{
-    width: fit-content;
-    align-items: center;
-    color: white;
-    text-align: center;
+    width: fit-content ;
+    align-items: center ;
+    color: white ;
+    text-align: center ;
 }
 
 .navbar{
-    display: flex;
-    flex-direction: column;
+    display: flex ;
+    flex-direction: column ;
 }
 
 .navbar-order{
-    width: 140px;
-    margin-left: 160px;
+    width: 140px ;
+    margin-left: 160px ;
 }
 
 .order-mom{
-    width: fit-content;
-    align-items: center;
-    color: white;
-    text-align: center;
+    width: fit-content ;
+    align-items: center ;
+    color: white ;
+    text-align: center ;
 }
 
 .navbar-profile{
-    width: 130px;
-    margin-left: 50px;
+    width: 150px ;
+    margin-left: 200px ;
 }
 
 .profile-mom{
-    width: fit-content;
-    align-items: center;
-    color: white;
-    text-align: center;
+    width: fit-content ;
+    align-items: center ;
+    color: white ;
+    text-align: center ;
 }
 
 .navbar-about{
-    width: 100px;
-    margin-left: 50px;
+    width: 130px ;
+    margin-left: 50px ;
 }
 
 .about-mom{
-    width: fit-content;
-    align-items: center;
-    color: white;
-    text-align: center;
+    width: fit-content ;
+    align-items: center ;
+    color: white ;
+    text-align: center ;
 }
 
 .navbar-container-two{
-    width: 100%;
-    height: 65px;
-    top: 65px;
-    position: fixed;
-    font-size: 16px;
-    display: flex;
-    flex-direction: row;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.8);
-    border-radius: 4px;
-    background: rgb(13, 35, 123);
-    text-align: center;
-    align-items: center;
+    width: 100% ;
+    height: 65px ;
+    top: 65px ;
+    position: fixed ;
+    font-size: 16px ;
+    display: flex ;
+    flex-direction: row ;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.8) ;
+    border-radius: 4px ;
+    background: rgb(13, 35, 123) ;
+    text-align: center ;
+    align-items: center ;
     font-family: 'Silkscreen', cursive;
 }
 
 .navbar-mugs{
-    width: 50px;
-    margin-left: 25px;
+    width: 50px ;
+    margin-left: 25px ;
 }
 
 .mugs-mom{
-    width: fit-content;
-    align-items: center;
-    color: white;
-    text-align: center;
+    width: fit-content ;
+    align-items: center ;
+    color: white ;
+    text-align: center ;
 }
 
 .navbar-keychains{
-    width: 90px;
-    margin-left: 45px;
+    width: 90px ;
+    margin-left: 45px ;
 }
 
 .keychains-mom{
-    width: fit-content;
-    align-items: center;
-    color: white;
+    width: fit-content ;
+    align-items: center ;
+    color: white ;
     text-align: center;
 }
 
 .navbar-action-figures{
-    width: 170px;
-    margin-left: 35px;
+    width: 170px ;
+    margin-left: 35px ;
 }
 
 .action-figures-mom{
-    width: fit-content;
-    align-items: center;
-    color: white;
-    text-align: center;
+    width: fit-content ;
+    align-items: center ;
+    color: white ;
+    text-align: center ;
 }
 
 
 .navbar-misc{
-    width: 125px;
-    margin-left: 25px;
+    width: 125px ;
+    margin-left: 25px ;
 }
 
 .misc-mom{
-    width: fit-content;
-    align-items: center;
-    color: white;
-    text-align: center;
+    width: fit-content ;
+    align-items: center ;
+    color: white ;
+    text-align: center ;
 }
 
 .navbar-search{
-    width: 220px;
-    margin-left: 60px;
-    text-align: center;
-    align-items: center;
+    width: 220px ;
+    margin-left: 60px ;
+    text-align: center ;
+    align-items: center ;
 }
 
 
 .navbar-login{
-    width: 55px;
-    margin-left: 500px;
+    width: 55px ;
+    margin-left: 500px ;
 }
 
 .login-mom{
-    width: fit-content;
-    align-items: center;
-    color: white;
-    text-align: center;
+    width: fit-content ;
+    align-items: center ;
+    color: white ;
+    text-align: center ;
 }
 
 
 .navbar-register{
-    width: 75px;
-    margin-left: 80px;
+    width: 75px ;
+    margin-left: 80px ;
 }
 
 .register-mom{
-    width: fit-content;
-    align-items: center;
-    color: white;
-    text-align: center;
+    width: fit-content ;
+    align-items: center ;
+    color: white ;
+    text-align: center ;
 }
 
 .navbar-cart{
-    width: 50px;
-    margin-left: 80px;
+    width: 75px ;
+    margin-left: 80px ;
 }
 
 .cart-mom{
-    width: fit-content;
-    align-items: center;
-    color: white;
-    text-align: center;
+    width: fit-content ;
+    align-items: center ;
+    color: white ;
+    text-align: center ;
 }
 
+.log-out{
+    width: 50px ;
+    margin-left: 100px ;
+}
+
+.logout-mom{
+    width: fit-content ;
+    align-items: center ;
+    color: white ;
+    text-align: center ;
+}
+
+.profile-logout{
+    margin-left: 540px;
+    padding-bottom: 1.4%;
+    margin-right: 5px;
+}
